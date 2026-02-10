@@ -25,14 +25,12 @@ export const resolvers = {
   },
   Game: {
     reviews(parent: { id: string }) {
-      return reviews
-        .filter((review) => review.game_id === parent.id)
+      return reviews.filter((review) => review.game_id === parent.id);
     },
   },
   Author: {
     reviews(parent: { id: string }) {
-      return reviews
-        .filter((review) => review.author_id === parent.id)
+      return reviews.filter((review) => review.author_id === parent.id);
     },
   },
   Review: {
@@ -41,6 +39,19 @@ export const resolvers = {
     },
     author(parent) {
       return authors.find((author) => author.id === parent.author_id);
+    },
+  },
+  Mutation: {
+    addGame(_, args) {
+      return [...games, { id: games[games.length - 1].id + 1, ...args.game }];
+    },
+    updateGame(_, args) {
+      return games.map((game) =>
+        game.id === args.id ? { ...game, ...args.game } : game,
+      );
+    },
+    deleteGame(_, args) {
+      return games.filter((game) => game.id !== args.id);
     },
   },
 };
