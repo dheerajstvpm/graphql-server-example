@@ -1,4 +1,3 @@
-
 // A schema is a collection of type definitions (hence "typeDefs")
 // that together define the "shape" of queries that are executed against
 // your data.
@@ -28,7 +27,10 @@ export const typeDefs = `#graphql
   # case, the "books" query returns an array of zero or more Books (defined above).
   type Query {
     games:[Game]
+    game(id:ID!):Game
     reviews:[Review]
+    review(id:ID!):Review
     authors:[Author]
+    author(id:ID!):Author
   }
 `;
